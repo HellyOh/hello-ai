@@ -10,7 +10,7 @@ export default function App() {
 
   return (
     <div style={{ padding: 40 }}>
-      <h1>Hello AI on Docker</h1>
+      <h1>Hello AI on Docker v2</h1>
       <button onClick={callApi}>AI 호출하기</button>
       <pre>{data && JSON.stringify(data, null, 2)}</pre>
     </div>

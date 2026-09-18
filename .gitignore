@@ -1,0 +1,15 @@
+# Java
+backend/build/
+backend/.gradle/
+.idea/
+
+# Node
+frontend/node_modules/
+frontend/dist/
+
+# Python
+ai/__pycache__/
+ai/.venv/
+
+# 환경변수
+.env

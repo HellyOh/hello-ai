@@ -1,0 +1,22 @@
+services:                     # 가동할 상자 목록
+
+  ai:                         # 상자 이름. 다른 상자가 "ai"라고 부르면 여기로 연결됨
+    build: ./ai               # ./ai 폴더의 Dockerfile로 제조
+    ports:
+      - "8004:8000"           # 내 PC 8004 → 상자 8000
+
+  backend:                    # 상자 이름 "backend"
+    build: ./backend          # ./backend 폴더의 Dockerfile로 제조
+    ports:
+      - "8005:8005"           # 내 PC 8005 → 상자 8005 (앱이 상자 안에서 8005로 뜬다)
+    environment:              # 상자 안에 넣어줄 환경변수
+      AI_BASE_URL: http://ai:8000     # ← 이름으로 부를 땐 "상자 안 포트"(8000)를 쓴다
+    depends_on:
+      - ai                    # ai 상자를 먼저 켠 뒤에 켜라
+  
+  frontend:
+    build: ./frontend
+    ports:
+      - "3001:80"             # 내 PC 3000 → 상자 안 nginx 80
+    depends_on:
+      - backend
